@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-pk9jfm7-r9+jq7sm_@*lz2@4b1d=2_(ld4+b07as%nbjiwyo7w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # "debug_toolbar",
     'rest_framework.authtoken',
     'dj_rest_auth',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -131,6 +132,18 @@ DATABASES = {
 }
 
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "estate",
+#         "USER": "admin",
+#         "PASSWORD": "Mimi1402!",
+#         "HOST": "localhost",
+#         "PORT": "5432", 
+#     }
+# }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -180,6 +193,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
+        #'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
 
@@ -202,6 +216,8 @@ SITE_ID = 1
 
 # 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
 
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [
@@ -215,7 +231,8 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = "none"
 SOCIALACCOUNT_QUERY_EMAIL = True
-# LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/"

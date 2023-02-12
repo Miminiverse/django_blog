@@ -20,10 +20,10 @@ class Post(models.Model):
     )
 
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=250, blank=True, null=True )
     excerpt = models.TextField(null=True)
     content = models.TextField(blank=True)
-    slug = models.SlugField(max_length=250, unique_for_date='published')
+    slug = models.SlugField(max_length=250, unique_for_date='published', blank=True)
     published = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
     status = models.CharField(max_length=10, choices=options, default='published')
@@ -35,4 +35,4 @@ class Post(models.Model):
         ordering = ('-published', )
 
     def __str__(self):
-        return self.title
+        return self.content
